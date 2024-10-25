@@ -298,22 +298,25 @@ cur_zone_str := "\{cur_zone_id}"
 
 ; Zone IDs. These MUST be declared in the order in which their IDs are in stock Sonic 2, otherwise zone offset tables will screw up
 emerald_hill_zone zoneID	$00
-zone_1 zoneID			$01
+ocean_wind_zone zoneID		$01
 wood_zone zoneID		$02
-zone_3 zoneID			$03
+sand_shower_zone zoneID		$03
 metropolis_zone zoneID		$04
-metropolis_zone_2 zoneID	$05
-wing_fortress_zone zoneID	$06
+tropical_sun_zone zoneID	$05
+blue_ocean_zone zoneID		$06
 hill_top_zone zoneID		$07
 hidden_palace_zone zoneID	$08
-zone_9 zoneID			$09
+rock_world_zone zoneID		$09
 oil_ocean_zone zoneID		$0A
 mystic_cave_zone zoneID		$0B
 casino_night_zone zoneID	$0C
 chemical_plant_zone zoneID	$0D
 death_egg_zone zoneID		$0E
 aquatic_ruin_zone zoneID	$0F
-sky_chase_zone zoneID		$10
+sky_fortress_zone zoneID	$10
+madness_mountain_zone zoneID	$11
+genocide_city_zone zone ID	$12
+neo_death_egg_zone zone ID	$13
 
 ; NOTE: If you want to shift IDs around, set useFullWaterTables to 1 in the assembly options
 
@@ -323,29 +326,64 @@ no_of_zones = cur_zone_id
 ; Zone and act IDs
 emerald_hill_zone_act_1 =	(emerald_hill_zone<<8)|$00
 emerald_hill_zone_act_2 =	(emerald_hill_zone<<8)|$01
-chemical_plant_zone_act_1 =	(chemical_plant_zone<<8)|$00
-chemical_plant_zone_act_2 =	(chemical_plant_zone<<8)|$01
-aquatic_ruin_zone_act_1 =	(aquatic_ruin_zone<<8)|$00
-aquatic_ruin_zone_act_2 =	(aquatic_ruin_zone<<8)|$01
-casino_night_zone_act_1 =	(casino_night_zone<<8)|$00
-casino_night_zone_act_2 =	(casino_night_zone<<8)|$01
-hill_top_zone_act_1 =		(hill_top_zone<<8)|$00
-hill_top_zone_act_2 =		(hill_top_zone<<8)|$01
-mystic_cave_zone_act_1 =	(mystic_cave_zone<<8)|$00
-mystic_cave_zone_act_2 =	(mystic_cave_zone<<8)|$01
-oil_ocean_zone_act_1 =		(oil_ocean_zone<<8)|$00
-oil_ocean_zone_act_2 =		(oil_ocean_zone<<8)|$01
-metropolis_zone_act_1 =		(metropolis_zone<<8)|$00
-metropolis_zone_act_2 =		(metropolis_zone<<8)|$01
-metropolis_zone_act_3 =		(metropolis_zone_2<<8)|$00
-sky_chase_zone_act_1 =		(sky_chase_zone<<8)|$00
-wing_fortress_zone_act_1 =	(wing_fortress_zone<<8)|$00
-death_egg_zone_act_1 =		(death_egg_zone<<8)|$00
-; Prototype zone and act IDs
+emerald_hill_zone_act_3 =	(emerald_hill_zone<<8)|$02
+ocean_wind_zone_act_1 =		(ocean_wind_zone<<8)|$00
+ocean_wind_zone_act_2 =		(ocean_wind_zone<<8)|$01
+ocean_wind_zone_act_3 =		(ocean_wind_zone<<8)|$02
 wood_zone_act_1 =		(wood_zone<<8)|$00
 wood_zone_act_2 =		(wood_zone<<8)|$01
+wood_zone_act_3 =		(wood_zone<<8)|$02
+sand_shower_zone_act_1 =	(sand_shower_zone<<8)|$00
+sand_shower_zone_act_2 =	(sand_shower_zone<<8)|$01
+sand_shower_zone_act_3 =	(hidden_palace_zone<<8)|$02
+metropolis_zone_act_1 =		(metropolis_zone<<8)|$00
+metropolis_zone_act_2 =		(metropolis_zone<<8)|$01
+metropolis_zone_act_3 =		(metropolis_zone<<8)|$02
+tropical_sun_zone_act_1 =	(tropical_sun_zone<<8)|$00
+tropical_sun_zone_act_2 =	(tropical_sun_zone<<8)|$01
+tropical_sun_zone_act_3 =	(tropical_sun_zone<<8)|$02
+blue_ocean_zone_act_1 =		(blue_ocean_zone<<8)|$00
+blue_ocean_zone_act_2 =		(blue_ocean_zone<<8)|$01
+blue_ocean_zone_act_3 =		(blue_ocean_zone<<8)|$02
+hill_top_zone_act_1 =		(hill_top_zone<<8)|$00
+hill_top_zone_act_2 =		(hill_top_zone<<8)|$01
+hill_top_zone_act_3 =		(hill_top_zone<<8)|$02
 hidden_palace_zone_act_1 =	(hidden_palace_zone<<8)|$00
 hidden_palace_zone_act_2 =	(hidden_palace_zone<<8)|$01
+hidden_palace_zone_act_3 =	(hidden_palace_zone<<8)|$02
+oil_ocean_zone_act_1 =		(oil_ocean_zone<<8)|$00
+oil_ocean_zone_act_2 =		(oil_ocean_zone<<8)|$01
+oil_ocean_zone_act_3 =		(oil_ocean_zone<<8)|$02
+mystic_cave_zone_act_1 =	(mystic_cave_zone<<8)|$00
+mystic_cave_zone_act_2 =	(mystic_cave_zone<<8)|$01
+mystic_cave_zone_act_3 =	(mystic_cave_zone<<8)|$02
+casino_night_zone_act_1 =	(casino_night_zone<<8)|$00
+casino_night_zone_act_2 =	(casino_night_zone<<8)|$01
+casino_night_zone_act_3 =	(casino_night_zone<<8)|$02
+chemical_plant_zone_act_1 =	(chemical_plant_zone<<8)|$00
+chemical_plant_zone_act_2 =	(chemical_plant_zone<<8)|$01
+chemical_plant_zone_act_3 =	(chemical_plant_zone<<8)|$02
+death_egg_zone_act_1 =		(death_egg_zone<<8)|$00
+death_egg_zone_act_2 =		(death_egg_zone<<8)|$01
+death_egg_zone_act_3 =		(death_egg_zone<<8)|$02
+aquatic_ruin_zone_act_1 =	(aquatic_ruin_zone<<8)|$00
+aquatic_ruin_zone_act_2 =	(aquatic_ruin_zone<<8)|$01
+aquatic_ruin_zone_act_3 =	(aquatic_ruin_zone<<8)|$02
+sky_chase_zone_act_1 =		(sky_fortress_zone<<8)|$00
+sky_chase_zone_act_2 =		(sky_fortress_zone<<8)|$01
+sky_chase_zone_act_3 =		(sky_fortress_zone<<8)|$02
+wing_fortress_zone_act_1 =	(sky_fortress_zone<<8)|$03
+wing_fortress_zone_act_2 =	(sky_fortress_zone<<8)|$04
+wing_fortress_zone_act_3 =	(sky_fortress_zone<<8)|$05
+madness_mountain_zone_act_1 =	(madness_mountain_zone<<8)|$00
+madness_mountain_zone_act_2 =	(madness_mountain_zone<<8)|$01
+mandess_mountain_zone_act_3 =	(madness_mountain_zone<<8)|$02
+genocide_city_zone_act_1 =	(genocide_city_zone<<8)|$00
+genocide_city_zone_act_2 =	(genocide_city_zone<<8)|$01
+genocide_city_zone_act_3 =	(genocide_city_zone<<8)|$02
+neo_death_egg_zone_act_1 =	(neo_death_egg_zone<<8)|$00
+neo_death_egg_zone_act_2 =	(neo_death_egg_zone<<8)|$01
+neo_death_egg_zone_act_3 =	(neo_death_egg_zone<<8)|$02
 
 ; ---------------------------------------------------------------------------
 ; some variables and functions to help define those constants (redefined before a new set of IDs)
