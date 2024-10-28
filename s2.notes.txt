@@ -1,3 +1,4 @@
+; (Note: All of this is from the OG Sonic Retro S2 dissasambly, this is not me (SONIC123CDMANIA) in the following text.)
 ; ---------------------------------------------------------------------------
 ; STYLE:
 ;
