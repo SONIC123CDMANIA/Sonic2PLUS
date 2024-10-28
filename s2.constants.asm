@@ -318,6 +318,10 @@ madness_mountain_zone zoneID	$11
 genocide_city_zone zone ID	$12
 neo_death_egg_zone zone ID	$13
 
+; Titlecards (0): Green Hill, Ocean Wind, Woods, Desert, Metropolis, Tropical Plant, Blue Lake, Hill Top, Olympus, Ice, Oil Ocean, Dust Hill, Casino Night, Cbemical Plant, Death Egg, Neo Green Hill, Sky Fortress (Sky Chase & Sky Fortress 2), Madness Mountain, Genocide City, & Neo Death Egg.
+; Titlecards (1): Emerald Hill, Ocean Wind, Wood, Dust Hill, Metropolis, Tropical Summer, Blue Lake, Hill Top, Hidden Palace, Rock World, Oil Ocean, Old Madness Mountain, Casino Night, Chemical Plant, First Death Egg, Emerald Isle, Sky Fortress (Sky Chase & Wing Fortress), Madness Mountain, Cyber City, & Second Death Egg.
+; Titlecards (2): Emerald Hill, Ocean Wind, Secret Jungle, Sand Shower, Metropolis, Tropical Sun, Blue Ocean, Hill Top, Secret Palace, Rock World, Oil Ocean, Mystic Cave, Casino Night, Chemical Plant, Death Egg, Aquatic Ruin, Sky Fortress (Sky Chase & Wing Fortress), Madness Mountain, Cyber City, & Neo Death Egg.
+
 ; NOTE: If you want to shift IDs around, set useFullWaterTables to 1 in the assembly options
 
 ; set the number of zones
