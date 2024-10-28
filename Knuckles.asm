@@ -1,29 +1,29 @@
-Obj4C:						  ; ...
+Obj62:						  ; ...
 
 ; FUNCTION CHUNK AT 0033A066 SIZE 0000000E BYTES
 
 		tst.w	($FFFFFE08).w
-		beq.s	Obj4C_Normal
+		beq.s	Obj62_Normal
 		jmp	DebugMode
 ; ---------------------------------------------------------------------------
 
-Obj4C_Normal:					  ; ...
+Obj62_Normal:					  ; ...
 		moveq	#0,d0
 		move.b	$24(a0),d0
-		move.w	Obj4C_Index(pc,d0.w),d1
-		jmp	Obj4C_Index(pc,d1.w)
-; End of function Obj4C
+		move.w	Obj62_Index(pc,d0.w),d1
+		jmp	Obj62_Index(pc,d1.w)
+; End of function Obj62
 
 ; ---------------------------------------------------------------------------
-Obj4C_Index:	dc.w Obj4C_Init-Obj4C_Index	  ; 0 ;	...
-		dc.w Obj4C_Control-Obj4C_Index	  ; 1
-		dc.w Obj4C_Hurt-Obj4C_Index	  ; 2
-		dc.w Obj4C_Dead-Obj4C_Index	  ; 3
-		dc.w Obj4C_Gone-Obj4C_Index	  ; 4
-		dc.w Obj4C_Respawning-Obj4C_Index ; 5
+Obj62_Index:	dc.w Obj62_Init-Obj62_Index	  ; 0 ;	...
+		dc.w Obj62_Control-Obj62_Index	  ; 1
+		dc.w Obj62_Hurt-Obj62_Index	  ; 2
+		dc.w Obj62_Dead-Obj62_Index	  ; 3
+		dc.w Obj62_Gone-Obj62_Index	  ; 4
+		dc.w Obj62_Respawning-Obj62_Index ; 5
 ; ---------------------------------------------------------------------------
 
-Obj4C_Init:					  ; ...
+Obj62_Init:					  ; ...
 		addq.b	#2,$24(a0)
 		move.b	#$13,$16(a0)
 		move.b	#9,$17(a0)
@@ -35,7 +35,7 @@ Obj4C_Init:					  ; ...
 		move.w	#$C,($FFFFF762).w
 		move.w	#$80,($FFFFF764).w
 		tst.b	($FFFFFE30).w
-		bne.s	Obj4C_Init_Continued
+		bne.s	Obj62_Init_Continued
 		move.w	#$780,2(a0)
 		jsr	Adjust2PArtPointer
 		move.b	#$C,$3E(a0)
@@ -45,7 +45,7 @@ Obj4C_Init:					  ; ...
 		move.w	2(a0),($FFFFFE3C).w
 		move.w	$3E(a0),($FFFFFE3E).w
 
-Obj4C_Init_Continued:				  ; ...
+Obj62_Init_Continued:				  ; ...
 		move.b	#0,$2C(a0)
 		move.b	#4,$2D(a0)
 		move.b	#0,($FFFFFE19).w
@@ -63,7 +63,7 @@ loc_3153EC:					  ; ...
 		add.w	#$20,8(a0)
 		sub.w	#4,$C(a0)
 
-Obj4C_Control:					  ; ...
+Obj62_Control:					  ; ...
 		tst.w	($FFFFFFDA).w
 		beq.s	loc_315422
 		btst	#4,($FFFFF605).w
@@ -89,8 +89,8 @@ loc_31543E:					  ; ...
 		moveq	#0,d0
 		move.b	$22(a0),d0
 		and.w	#6,d0
-		move.w	Obj4C_Modes(pc,d0.w),d1
-		jsr	Obj4C_Modes(pc,d1.w)
+		move.w	Obj62_Modes(pc,d0.w),d1
+		jsr	Obj62_Modes(pc,d1.w)
 
 loc_315450:					  ; ...
 		cmp.w	#$FF00,($FFFFEECC).w
@@ -119,64 +119,64 @@ loc_31548A:					  ; ...
 loc_31549A:					  ; ...
 		bra.w	LoadKnucklesDynPLC
 ; ---------------------------------------------------------------------------
-Obj4C_Modes:	dc.w Obj4C_MdNormal-Obj4C_Modes	  ; 0 ;	...
-		dc.w Obj4C_MdAir-Obj4C_Modes	  ; 1
-		dc.w Obj4C_MdRoll-Obj4C_Modes	  ; 2
-		dc.w Obj4C_MdJump-Obj4C_Modes	  ; 3
+Obj62_Modes:	dc.w Obj62_MdNormal-Obj62_Modes	  ; 0 ;	...
+		dc.w Obj62_MdAir-Obj62_Modes	  ; 1
+		dc.w Obj62_MdRoll-Obj62_Modes	  ; 2
+		dc.w Obj62_MdJump-Obj62_Modes	  ; 3
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
 Knuckles_Display:				  ; ...
 		move.w	$30(a0),d0
-		beq.s	Obj4C_Display
+		beq.s	Obj62_Display
 		subq.w	#1,$30(a0)
 		lsr.w	#3,d0
-		bcc.s	Obj4C_CheckInvincibility
+		bcc.s	Obj62_CheckInvincibility
 
-Obj4C_Display:					  ; ...
+Obj62_Display:					  ; ...
 		jsr	DisplaySprite
 
-Obj4C_CheckInvincibility:			  ; ...
+Obj62_CheckInvincibility:			  ; ...
 		btst	#1,$2B(a0)
-		beq.s	Obj4C_CheckSpeedShoes
+		beq.s	Obj62_CheckSpeedShoes
 		tst.w	$32(a0)
-		beq.s	Obj4C_CheckSpeedShoes
+		beq.s	Obj62_CheckSpeedShoes
 		subq.w	#1,$32(a0)
-		bne.s	Obj4C_CheckSpeedShoes
+		bne.s	Obj62_CheckSpeedShoes
 		tst.b	($FFFFF7AA).w
-		bne.s	Obj4C_RemoveInvincibility
+		bne.s	Obj62_RemoveInvincibility
 		cmp.b	#$C,$28(a0)
-		bcs.s	Obj4C_RemoveInvincibility
+		bcs.s	Obj62_RemoveInvincibility
 		move.w	($FFFFFF90).w,d0
 		jsr	PlayMusic
 
-Obj4C_RemoveInvincibility:			  ; ...
+Obj62_RemoveInvincibility:			  ; ...
 		bclr	#1,$2B(a0)
 
-Obj4C_CheckSpeedShoes:				  ; ...
+Obj62_CheckSpeedShoes:				  ; ...
 		btst	#2,$2B(a0)
-		beq.s	Obj4C_ExitCheck
+		beq.s	Obj62_ExitCheck
 		tst.w	$34(a0)
-		beq.s	Obj4C_ExitCheck
+		beq.s	Obj62_ExitCheck
 		subq.w	#1,$34(a0)
-		bne.s	Obj4C_ExitCheck
+		bne.s	Obj62_ExitCheck
 		move.w	#$600,($FFFFF760).w
 		move.w	#$C,($FFFFF762).w
 		move.w	#$80,($FFFFF764).w
 		tst.b	($FFFFFE19).w
-		beq.s	Obj4C_RemoveSpeedShoes
+		beq.s	Obj62_RemoveSpeedShoes
 		move.w	#$800,($FFFFF760).w
 		move.w	#$18,($FFFFF762).w
 		move.w	#$C0,($FFFFF764).w
 
-Obj4C_RemoveSpeedShoes:				  ; ...
+Obj62_RemoveSpeedShoes:				  ; ...
 		bclr	#2,$2B(a0)
 		move.w	#$FC,d0
 		jmp	PlayMusic
 ; ---------------------------------------------------------------------------
 
-Obj4C_ExitCheck:				  ; ...
+Obj62_ExitCheck:				  ; ...
 		rts
 ; End of function Knuckles_Display
 
@@ -204,16 +204,16 @@ Knuckles_RecordPositions:			  ; ...
 
 Knuckles_Water:					  ; ...
 		tst.b	($FFFFF730).w
-		bne.s	Obj4C_InWater
+		bne.s	Obj62_InWater
 
 return_31556C:					  ; ...
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_InWater:					  ; ...
+Obj62_InWater:					  ; ...
 		move.w	($FFFFF646).w,d0
 		cmp.w	$C(a0),d0
-		bge.s	Obj4C_OutWater
+		bge.s	Obj62_OutWater
 		bset	#6,$22(a0)
 		bne.s	return_31556C
 		move.l	a0,a1
@@ -240,7 +240,7 @@ loc_3155C0:					  ; ...
 		jmp	PlaySound
 ; ---------------------------------------------------------------------------
 
-Obj4C_OutWater:					  ; ...
+Obj62_OutWater:					  ; ...
 		bclr	#6,$22(a0)
 		beq.s	return_31556C
 		move.l	a0,a1
@@ -278,7 +278,7 @@ loc_315644:					  ; ...
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_MdNormal:					  ; ...
+Obj62_MdNormal:					  ; ...
 		bsr.w	Knuckles_Spindash
 		bsr.w	Knuckles_Jump
 		bsr.w	Knuckles_SlopeResist
@@ -289,15 +289,15 @@ Obj4C_MdNormal:					  ; ...
 		bsr.w	AnglePos
 		bsr.w	Knuckles_SlopeRepel
 		rts
-; End of function Obj4C_MdNormal
+; End of function Obj62_MdNormal
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_MdAir:					  ; ...
+Obj62_MdAir:					  ; ...
 		tst.b	$21(a0)
-		bne.s	Obj4C_MdAir_Gliding
+		bne.s	Obj62_MdAir_Gliding
 		bsr.w	Knuckles_JumpHeight
 		bsr.w	Knuckles_ChgJumpDir
 		bsr.w	Knuckles_LevelBoundaries
@@ -312,7 +312,7 @@ loc_31569C:					  ; ...
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_MdAir_Gliding:				  ; ...
+Obj62_MdAir_Gliding:				  ; ...
 		bsr.w	Knuckles_GlideSpeedControl
 		bsr.w	Knuckles_LevelBoundaries
 		jsr	ObjectMove		  ; AKA	SpeedToPos in Sonic 1
@@ -320,7 +320,7 @@ Obj4C_MdAir_Gliding:				  ; ...
 
 return_3156B8:					  ; ...
 		rts
-; End of function Obj4C_MdAir
+; End of function Obj62_MdAir
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -946,7 +946,7 @@ return_315D9A:					  ; ...
 
 ; ---------------------------------------------------------------------------
 
-Obj4C_MdRoll:					  ; ...
+Obj62_MdRoll:					  ; ...
 		tst.b	$39(a0)
 		bne.s	loc_315DA6
 		bsr.w	Knuckles_Jump
@@ -961,7 +961,7 @@ loc_315DA6:					  ; ...
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_MdJump:					  ; ...
+Obj62_MdJump:					  ; ...
 		bsr.w	Knuckles_JumpHeight
 		bsr.w	Knuckles_ChgJumpDir
 		bsr.w	Knuckles_LevelBoundaries
@@ -983,25 +983,25 @@ Knuckles_Move:					  ; ...
 		move.w	($FFFFF762).w,d5
 		move.w	($FFFFF764).w,d4
 		tst.b	$2B(a0)
-		bmi.w	Obj4C_Traction
+		bmi.w	Obj62_Traction
 		tst.w	$2E(a0)
-		bne.w	Obj4C_ResetScreen
+		bne.w	Obj62_ResetScreen
 		btst	#2,($FFFFF602).w
-		beq.s	Obj4C_NotLeft
+		beq.s	Obj62_NotLeft
 		bsr.w	Knuckles_MoveLeft
 
-Obj4C_NotLeft:					  ; ...
+Obj62_NotLeft:					  ; ...
 		btst	#3,($FFFFF602).w
-		beq.s	Obj4C_NotRight
+		beq.s	Obj62_NotRight
 		bsr.w	Knuckles_MoveRight
 
-Obj4C_NotRight:					  ; ...
+Obj62_NotRight:					  ; ...
 		move.b	$26(a0),d0
 		add.b	#$20,d0
 		and.b	#$C0,d0
-		bne.w	Obj4C_ResetScreen
+		bne.w	Obj62_ResetScreen
 		tst.w	$14(a0)
-		bne.w	Obj4C_ResetScreen
+		bne.w	Obj62_ResetScreen
 		bclr	#5,$22(a0)
 		move.b	#5,$1C(a0)
 		btst	#3,$22(a0)
@@ -1031,7 +1031,7 @@ Knuckles_BalanceOnObjRight:			  ; ...
 		btst	#0,$22(a0)
 		bne.s	loc_315E9A
 		move.b	#6,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 loc_315E9A:					  ; ...
@@ -1039,14 +1039,14 @@ loc_315E9A:					  ; ...
 		move.b	#0,$1E(a0)
 		move.b	#4,$1B(a0)
 		move.w	#$606,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 Knuckles_BalanceOnObjLeft:			  ; ...
 		btst	#0,$22(a0)
 		beq.s	loc_315EC8
 		move.b	#6,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 loc_315EC8:					  ; ...
@@ -1054,7 +1054,7 @@ loc_315EC8:					  ; ...
 		move.b	#0,$1E(a0)
 		move.b	#4,$1B(a0)
 		move.w	#$606,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 Knuckles_Balance:				  ; ...
@@ -1066,7 +1066,7 @@ Knuckles_Balance:				  ; ...
 		btst	#0,$22(a0)
 		bne.s	loc_315F0C
 		move.b	#6,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 loc_315F0C:					  ; ...
@@ -1074,7 +1074,7 @@ loc_315F0C:					  ; ...
 		move.b	#0,$1E(a0)
 		move.b	#4,$1B(a0)
 		move.w	#$606,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 Knuckles_BalanceLeft:				  ; ...
@@ -1083,7 +1083,7 @@ Knuckles_BalanceLeft:				  ; ...
 		btst	#0,$22(a0)
 		beq.s	loc_315F42
 		move.b	#6,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 loc_315F42:					  ; ...
@@ -1091,7 +1091,7 @@ loc_315F42:					  ; ...
 		move.b	#0,$1E(a0)
 		move.b	#4,$1B(a0)
 		move.w	#$606,$1C(a0)
-		bra.w	Obj4C_ResetScreen
+		bra.w	Obj62_ResetScreen
 ; ---------------------------------------------------------------------------
 
 Knuckles_LookUp:				  ; ...
@@ -1100,41 +1100,41 @@ Knuckles_LookUp:				  ; ...
 		move.b	#7,$1C(a0)
 		addq.w	#1,($FFFFF66C).w
 		cmp.w	#$78,($FFFFF66C).w
-		bcs.s	Obj4C_ResetScreen_Part2
+		bcs.s	Obj62_ResetScreen_Part2
 		move.w	#$78,($FFFFF66C).w
 		cmp.w	#$C8,($FFFFEED8).w
-		beq.s	Obj4C_UpdateSpeedOnGround
+		beq.s	Obj62_UpdateSpeedOnGround
 		addq.w	#2,($FFFFEED8).w
-		bra.s	Obj4C_UpdateSpeedOnGround
+		bra.s	Obj62_UpdateSpeedOnGround
 ; ---------------------------------------------------------------------------
 
 Knuckles_Duck:					  ; ...
 		btst	#1,($FFFFF602).w
-		beq.s	Obj4C_ResetScreen
+		beq.s	Obj62_ResetScreen
 		move.b	#8,$1C(a0)
 		addq.w	#1,($FFFFF66C).w
 		cmp.w	#$78,($FFFFF66C).w
-		bcs.s	Obj4C_ResetScreen_Part2
+		bcs.s	Obj62_ResetScreen_Part2
 		move.w	#$78,($FFFFF66C).w
 		cmp.w	#8,($FFFFEED8).w
-		beq.s	Obj4C_UpdateSpeedOnGround
+		beq.s	Obj62_UpdateSpeedOnGround
 		subq.w	#2,($FFFFEED8).w
-		bra.s	Obj4C_UpdateSpeedOnGround
+		bra.s	Obj62_UpdateSpeedOnGround
 ; ---------------------------------------------------------------------------
 
-Obj4C_ResetScreen:				  ; ...
+Obj62_ResetScreen:				  ; ...
 		move.w	#0,($FFFFF66C).w
 
-Obj4C_ResetScreen_Part2:			  ; ...
+Obj62_ResetScreen_Part2:			  ; ...
 		cmp.w	#$60,($FFFFEED8).w
-		beq.s	Obj4C_UpdateSpeedOnGround
+		beq.s	Obj62_UpdateSpeedOnGround
 		bcc.s	loc_315FCE
 		addq.w	#4,($FFFFEED8).w
 
 loc_315FCE:					  ; ...
 		subq.w	#2,($FFFFEED8).w
 
-Obj4C_UpdateSpeedOnGround:			  ; ...
+Obj62_UpdateSpeedOnGround:			  ; ...
 		tst.b	($FFFFFE19).w
 		beq.s	loc_315FDC
 		move.w	#$C,d5
@@ -1142,20 +1142,20 @@ Obj4C_UpdateSpeedOnGround:			  ; ...
 loc_315FDC:					  ; ...
 		move.b	($FFFFF602).w,d0
 		and.b	#$C,d0
-		bne.s	Obj4C_Traction
+		bne.s	Obj62_Traction
 		move.w	$14(a0),d0
-		beq.s	Obj4C_Traction
-		bmi.s	Obj4C_SettleLeft
+		beq.s	Obj62_Traction
+		bmi.s	Obj62_SettleLeft
 		sub.w	d5,d0
 		bcc.s	loc_315FF6
 		move.w	#0,d0
 
 loc_315FF6:					  ; ...
 		move.w	d0,$14(a0)
-		bra.s	Obj4C_Traction
+		bra.s	Obj62_Traction
 ; ---------------------------------------------------------------------------
 
-Obj4C_SettleLeft:				  ; ...
+Obj62_SettleLeft:				  ; ...
 		add.w	d5,d0
 		bcc.s	loc_316004
 		move.w	#0,d0
@@ -1163,7 +1163,7 @@ Obj4C_SettleLeft:				  ; ...
 loc_316004:					  ; ...
 		move.w	d0,$14(a0)
 
-Obj4C_Traction:					  ; ...
+Obj62_Traction:					  ; ...
 		move.b	$26(a0),d0
 		jsr	CalcSine
 		muls.w	$14(a0),d1
@@ -1173,7 +1173,7 @@ Obj4C_Traction:					  ; ...
 		asr.l	#8,d0
 		move.w	d0,$12(a0)
 
-Obj4C_CheckWallsOnGround:			  ; ...
+Obj62_CheckWallsOnGround:			  ; ...
 		move.b	$26(a0),d0
 		add.b	#$40,d0
 		bmi.s	return_3160A6
@@ -1352,7 +1352,7 @@ Knuckles_RollSpeed:				  ; ...
 		asr.w	#1,d5
 		move.w	#$20,d4
 		tst.b	$2B(a0)
-		bmi.w	Obj4C_Roll_ResetScreen
+		bmi.w	Obj62_Roll_ResetScreen
 		tst.w	$2E(a0)
 		bne.s	Knuckles_Apply_RollSpeed
 		btst	#2,($FFFFF602).w
@@ -1387,7 +1387,7 @@ loc_316202:					  ; ...
 
 Knuckles_CheckRollStop:				  ; ...
 		tst.w	$14(a0)
-		bne.s	Obj4C_Roll_ResetScreen
+		bne.s	Obj62_Roll_ResetScreen
 		tst.b	$39(a0)
 		bne.s	Knuckles_KeepRolling
 		bclr	#2,$22(a0)
@@ -1395,7 +1395,7 @@ Knuckles_CheckRollStop:				  ; ...
 		move.b	#9,$17(a0)
 		move.b	#5,$1C(a0)
 		subq.w	#5,$C(a0)
-		bra.s	Obj4C_Roll_ResetScreen
+		bra.s	Obj62_Roll_ResetScreen
 ; ---------------------------------------------------------------------------
 ; magically gives Knuckles an extra push if he's going to stop rolling where it's not allowed
 ; (such	as in an S-curve in HTZ	or a stopper chamber in	CNZ)
@@ -1404,10 +1404,10 @@ Knuckles_CheckRollStop:				  ; ...
 Knuckles_KeepRolling:				  ; ...
 		move.w	#$400,$14(a0)
 		btst	#0,$22(a0)
-		beq.s	Obj4C_Roll_ResetScreen
+		beq.s	Obj62_Roll_ResetScreen
 		neg.w	$14(a0)
 
-Obj4C_Roll_ResetScreen:				  ; ...
+Obj62_Roll_ResetScreen:				  ; ...
 		cmp.w	#$60,($FFFFEED8).w
 		beq.s	Knuckles_SetRollSpeeds
 		bcc.s	loc_316250
@@ -1435,7 +1435,7 @@ loc_316278:					  ; ...
 
 loc_316282:					  ; ...
 		move.w	d1,$10(a0)
-		bra.w	Obj4C_CheckWallsOnGround
+		bra.w	Obj62_CheckWallsOnGround
 ; End of function Knuckles_RollSpeed
 
 
@@ -1497,7 +1497,7 @@ Knuckles_ChgJumpDir:				  ; ...
 		move.w	($FFFFF762).w,d5
 		asl.w	#1,d5
 		btst	#4,$22(a0)
-		bne.s	Obj4C_Jump_ResetScreen
+		bne.s	Obj62_Jump_ResetScreen
 		move.w	$10(a0),d0
 		btst	#2,($FFFFF602).w
 		beq.s	loc_31630E
@@ -1535,7 +1535,7 @@ loc_316330:					  ; ...
 loc_316332:					  ; ...
 		move.w	d0,$10(a0)
 
-Obj4C_Jump_ResetScreen:				  ; ...
+Obj62_Jump_ResetScreen:				  ; ...
 		cmp.w	#$60,($FFFFEED8).w
 		beq.s	Knuckles_JumpPeakDecelerate
 		bcc.s	loc_316344
@@ -1624,31 +1624,31 @@ Knuckles_Boundary_Sides:			  ; ...
 
 Knuckles_Roll:					  ; ...
 		tst.b	$2B(a0)
-		bmi.s	Obj4C_NoRoll
+		bmi.s	Obj62_NoRoll
 		move.w	$14(a0),d0
 		bpl.s	loc_3163E6
 		neg.w	d0
 
 loc_3163E6:					  ; ...
 		cmp.w	#$80,d0
-		bcs.s	Obj4C_NoRoll
+		bcs.s	Obj62_NoRoll
 		move.b	($FFFFF602).w,d0
 		and.b	#$C,d0
-		bne.s	Obj4C_NoRoll
+		bne.s	Obj62_NoRoll
 		btst	#1,($FFFFF602).w
-		bne.s	Obj4C_ChkRoll
+		bne.s	Obj62_ChkRoll
 
-Obj4C_NoRoll:					  ; ...
+Obj62_NoRoll:					  ; ...
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_ChkRoll:					  ; ...
+Obj62_ChkRoll:					  ; ...
 		btst	#2,$22(a0)
-		beq.s	Obj4C_DoRoll
+		beq.s	Obj62_DoRoll
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_DoRoll:					  ; ...
+Obj62_DoRoll:					  ; ...
 		bset	#2,$22(a0)
 		move.b	#$E,$16(a0)
 		move.b	#7,$17(a0)
@@ -1943,7 +1943,7 @@ loc_316780:					  ; ...
 		move.b	#0,($FFFFD11C).w
 		move.w	#$BC,d0
 		jsr	PlaySound
-		bra.s	Obj4C_Spindash_ResetScreen
+		bra.s	Obj62_Spindash_ResetScreen
 ; ---------------------------------------------------------------------------
 Spindash_Speeds:				  ; ...
 		dc.w  $800, $880, $900,	$980, $A00, $A80, $B00,	$B80, $C00; 0
@@ -1963,16 +1963,16 @@ Knuckles_ChargingSpindash:			  ; ...
 loc_3167D4:					  ; ...
 		move.b	($FFFFF603).w,d0
 		and.b	#$70,d0
-		beq.w	Obj4C_Spindash_ResetScreen
+		beq.w	Obj62_Spindash_ResetScreen
 		move.w	#$900,$1C(a0)
 		move.w	#$E0,d0
 		jsr	PlaySound
 		add.w	#$200,$3A(a0)
 		cmp.w	#$800,$3A(a0)
-		bcs.s	Obj4C_Spindash_ResetScreen
+		bcs.s	Obj62_Spindash_ResetScreen
 		move.w	#$800,$3A(a0)
 
-Obj4C_Spindash_ResetScreen:			  ; ...
+Obj62_Spindash_ResetScreen:			  ; ...
 		addq.l	#4,sp
 		cmp.w	#$60,($FFFFEED8).w
 		beq.s	loc_316818
@@ -2571,20 +2571,20 @@ return_316D62:					  ; ...
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_Hurt:					  ; ...
+Obj62_Hurt:					  ; ...
 
 ; FUNCTION CHUNK AT 00316E14 SIZE 0000001C BYTES
 
 		tst.w	($FFFFFFDA).w
-		beq.s	Obj4C_Hurt_Normal
+		beq.s	Obj62_Hurt_Normal
 		btst	#4,($FFFFF605).w
-		beq.s	Obj4C_Hurt_Normal
+		beq.s	Obj62_Hurt_Normal
 		move.w	#1,($FFFFFE08).w
 		clr.b	($FFFFF7CC).w
 		rts
 ; ---------------------------------------------------------------------------
 
-Obj4C_Hurt_Normal:				  ; ...
+Obj62_Hurt_Normal:				  ; ...
 		tst.b	$25(a0)
 		bmi.w	Knuckles_HurtInstantRecover
 		jsr	ObjectMove		  ; AKA	SpeedToPos in Sonic 1
@@ -2605,7 +2605,7 @@ loc_316DAE:					  ; ...
 		bsr.w	Knuckles_Animate
 		bsr.w	LoadKnucklesDynPLC
 		jmp	DisplaySprite
-; End of function Obj4C_Hurt
+; End of function Obj62_Hurt
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -2638,7 +2638,7 @@ JmpToK_KillCharacter:				  ; ...
 ; End of function Knuckles_HurtStop
 
 ; ---------------------------------------------------------------------------
-; START	OF FUNCTION CHUNK FOR Obj4C_Hurt
+; START	OF FUNCTION CHUNK FOR Obj62_Hurt
 
 Knuckles_HurtInstantRecover:			  ; ...
 		subq.b	#2,$24(a0)
@@ -2647,12 +2647,12 @@ Knuckles_HurtInstantRecover:			  ; ...
 		bsr.w	Knuckles_Animate
 		bsr.w	LoadKnucklesDynPLC
 		jmp	DisplaySprite
-; END OF FUNCTION CHUNK	FOR Obj4C_Hurt
+; END OF FUNCTION CHUNK	FOR Obj62_Hurt
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_Dead:					  ; ...
+Obj62_Dead:					  ; ...
 		tst.w	($FFFFFFDA).w
 		beq.s	loc_316E4A
 		btst	#4,($FFFFF605).w
@@ -2663,19 +2663,19 @@ Obj4C_Dead:					  ; ...
 ; ---------------------------------------------------------------------------
 
 loc_316E4A:					  ; ...
-		bsr.w	Obj4C_CheckGameOver
+		bsr.w	Obj62_CheckGameOver
 		jsr	ObjectMoveAndFall
 		bsr.w	Knuckles_RecordPositions
 		bsr.w	Knuckles_Animate
 		bsr.w	LoadKnucklesDynPLC
 		jmp	DisplaySprite
-; End of function Obj4C_Dead
+; End of function Obj62_Dead
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_CheckGameOver:					  ; ...
+Obj62_CheckGameOver:					  ; ...
 		move.b	#1,($FFFFEEBE).w
 		move.b	#0,$39(a0)
 		move.w	($FFFFEECE).w,d0
@@ -2686,7 +2686,7 @@ Obj4C_CheckGameOver:					  ; ...
 		move.w	#$3C,$3A(a0)
 		addq.b	#1,($FFFFFE1C).w
 		subq.b	#1,($FFFFFE12).w
-		bne.s	Obj4C_ResetLevel
+		bne.s	Obj62_ResetLevel
 		move.w	#0,$3A(a0)
 		move.b	#$39,($FFFFB080).w
 		move.b	#$39,($FFFFB0C0).w
@@ -2694,7 +2694,7 @@ Obj4C_CheckGameOver:					  ; ...
 		move.w	a0,($FFFFB0BE).w
 		clr.b	($FFFFFE1A).w
 
-Obj4C_Finished:					  ; ...
+Obj62_Finished:					  ; ...
 		clr.b	($FFFFFE1E).w
 		clr.b	($FFFFFECA).w
 		move.b	#8,$24(a0)
@@ -2704,19 +2704,19 @@ Obj4C_Finished:					  ; ...
 		jmp	LoadPLC
 ; ---------------------------------------------------------------------------
 
-Obj4C_ResetLevel:				  ; ...
+Obj62_ResetLevel:				  ; ...
 		tst.b	($FFFFFE1A).w
-		beq.s	Obj4C_ResetLevel_Part2
+		beq.s	Obj62_ResetLevel_Part2
 		move.w	#0,$3A(a0)
 		move.b	#$39,($FFFFB080).w
 		move.b	#$39,($FFFFB0C0).w
 		move.b	#2,($FFFFB09A).w
 		move.b	#3,($FFFFB0DA).w
 		move.w	a0,($FFFFB0BE).w
-		bra.s	Obj4C_Finished
+		bra.s	Obj62_Finished
 ; ---------------------------------------------------------------------------
 
-Obj4C_ResetLevel_Part2:				  ; ...
+Obj62_ResetLevel_Part2:				  ; ...
 		tst.w	($FFFFFFDC).w
 		beq.s	return_316F64
 		move.b	#0,($FFFFEEBE).w
@@ -2738,13 +2738,13 @@ Obj4C_ResetLevel_Part2:				  ; ...
 
 return_316F64:					  ; ...
 		rts
-; End of function Obj4C_CheckGameOver
+; End of function Obj62_CheckGameOver
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Obj4C_Gone:					  ; ...
+Obj62_Gone:					  ; ...
 		tst.w	$3A(a0)
 		beq.s	return_316F78
 		subq.w	#1,$3A(a0)
@@ -2753,11 +2753,11 @@ Obj4C_Gone:					  ; ...
 
 return_316F78:					  ; ...
 		rts
-; End of function Obj4C_Gone
+; End of function Obj62_Gone
 
 ; ---------------------------------------------------------------------------
 
-Obj4C_Respawning:				  ; ...
+Obj62_Respawning:				  ; ...
 		tst.w	($FFFFEEB0).w
 		bne.s	loc_316F8C
 		tst.w	($FFFFEEB2).w
