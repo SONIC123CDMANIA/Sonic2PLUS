@@ -655,6 +655,7 @@ ObjID_StartBanner =		id(ObjPtr_StartBanner)		; 5F
 ObjID_EndingController =	id(ObjPtr_EndingController)	; 5F
 ObjID_SSRing =			id(ObjPtr_SSRing)		; 60
 ObjID_SSBomb =			id(ObjPtr_SSBomb)		; 61
+ObjID_Knuckles =		id(ObjPtr_Knuckles)		; 63
 ObjID_SSShadow =		id(ObjPtr_SSShadow)		; 63
 ObjID_MTZTwinStompers =		id(ObjPtr_MTZTwinStompers)	; 64
 ObjID_MTZLongPlatform =		id(ObjPtr_MTZLongPlatform)	; 65
