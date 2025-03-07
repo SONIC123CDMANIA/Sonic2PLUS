@@ -14856,13 +14856,13 @@ LevelSizeLoad:
 	lsr.w	#4,d0
 	lea	LevelSize(pc,d0.w),a0
 	move.l	(a0)+,d0
-	move.l	d0,(Camera_Min_X_pos).w
-	move.l	d0,(Camera_Min_X_pos_target).w
-	move.l	d0,(Tails_Min_X_pos).w
+	move.l	d0,(Camera_Min_X_pos).w		; Also sets Camera_Max_X_pos.
+	move.l	d0,(Camera_Min_X_pos_target).w	; Also sets Camera_Max_X_pos_target.
+	move.l	d0,(Tails_Min_X_pos).w		; Also sets Tails_Max_X_pos.
 	move.l	(a0)+,d0
-	move.l	d0,(Camera_Min_Y_pos).w
-	move.l	d0,(Camera_Min_Y_pos_target).w
-	move.l	d0,(Tails_Min_Y_pos).w
+	move.l	d0,(Camera_Min_Y_pos).w		; Also sets Camera_Max_Y_pos.
+	move.l	d0,(Camera_Min_Y_pos_target).w	; Also sets Camera_Max_Y_pos_target.
+	move.l	d0,(Tails_Min_Y_pos).w		; Also sets Tails_Max_Y_pos.
 	move.w	#$1010,(Horiz_block_crossed_flag).w
 	move.w	#(224/2)-16,(Camera_Y_pos_bias).w
 	move.w	#(224/2)-16,(Camera_Y_pos_bias_P2).w
@@ -70058,7 +70058,7 @@ return_34F26:
 
 loc_34F28:
 	move.w	#8,d6
-	bsr.w	loc_350A0
+	bsr.w	Obj61_TestCollision
 	bcc.s	return_34F68
 	move.b	#1,collision_property(a1)
 	move.w	#SndID_SlowSmash,d0
@@ -70151,7 +70151,7 @@ loc_35010:
 
 loc_35036:
 	move.w	#$A,d6
-	bsr.w	loc_350A0
+	bsr.w	Obj61_TestCollision
 	bcc.s	return_3509E
 	cmpa.l	#MainCharacter,a1
 	bne.s	loc_3504E
@@ -70188,8 +70188,8 @@ loc_35094:
 return_3509E:
 	rts
 ; ===========================================================================
-
-loc_350A0:
+; loc_350A0:
+Obj61_TestCollision:
 	cmpi.b	#8,anim(a0)
 	bne.s	loc_350DC
 	tst.b	collision_flags(a0)
