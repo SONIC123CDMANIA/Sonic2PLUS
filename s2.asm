@@ -52,7 +52,29 @@ newTitleCards = 0
 ;   | If 1, "EMERALD HILL", "OCEAN WIND", "WOOD", "DUST HILL", "METROPOLIS", "TROPICAL SUMMER", "BLUE LAKE", "HILL TOP", "HIDDEN PALACE", "ROCK WORLD", "OIL OCEAN", "OLD MADNESS MOUNTAIN", "CASINO NIGHT", "CHEMICAL PLANT", "FIRST DEATH EGG", "EMERALD ISLE", "SKY CHASE" (in Sky Fortress), "WING FORTRESS" (in Sky Fortress), "MADNESS MOUNTAIN", "CYBER CITY", & "SECOND DEATH EGG" are used in title cards.
 ;   | If 2, "EMERALD HILL", "OCEAN WIND", "SECRET JUNGLE", "SAND SHOWER", "METROPOLIS", "TROPICAL SUN", "BLUE OCEAN", "HILL TOP", "SECRET PALACE", "ROCK WORLD", "OIL OCEAN", "MYSTIC CAVE", "CASINO NIGHT", "CHEMICAL PLANT", "DEATH EGG", "AQUATIC RUIN", "SKY CHASE" (in Sky Fortress), "WING FORTRESS" (in Sky Fortress), "MADNESS MOUNTAIN", "CYBER CITY", & "NEO DEATH EGG" are used in title cards.
 ZoneLayouts = REV00
-;   | 
+;   | "Nick Arcade" sets it to be the zone layouts from the Nick Arcade Prototype, but tweaked.
+;   | "Simon Wai" sets it to be the zone layouts from the Simon Wai prototype, but tweaked.
+;   | "8-21-1992" sets it to be the zone layouts from the August 21 1992 protoype, but tweaked.
+;   | "9-14-1992" sets it to be the zone layouts from the September 14 1992 prototype, but tweaked.
+;   | "CENSOR" sets it to be the zone layouts from the CENSOR prototype, but tweaked.
+;   | "Beta 4" sets it to be the zone layouts from the Beta 4 prototype, but tweaked.
+;   | "Beta 5" sets it to be the zone layouts from the Beta 5 prototype, but tweaked.
+;   | "Beta 6" sets it to be the zone layouts from the Beta 6 prototype, but tweaked.
+;   | "Beta 6B" sets it to be the zone layouts from the Beta 6B prototype, but tweaked.
+;   | "Beta 7" sets it to be the zone layouts from the Beta 7 prototype, but tweaked.
+;   | "Beta 8" sets it to be the zone layouts from the Beta 8 prototype, but tweaked.
+;   | "REV00" sets it to be the zone layouts from Revision 0, but tweaked.
+;   | "REV01" sets it to be the zone layouts from Revision 1, but tweaked.
+;   | "REV01(SMC)" sets it to be the zone layouts from Sonic Mega Collection, but tweaked.
+;   | "REV01(3DSTH2)" sets it to be the zone layouts from 3D Sonic The Hedghog 2, but tweaked.
+;   | "REV02" sets it to be the zone layouts from Revision 2, but tweaked.
+;   | "REV02(SC)" sets it to be the zone layouts from Sonic Classics, but tweaked.
+;   | "REV02(KiS2)" sets it to be the zone layouts from Knuckles in Sonic 2, but tweaked.
+;   | "REV02(SJ(E))" sets it to be the zone layouts from Easy Mode of Sonic Jam, but tweaked.
+;   | "REV02(SJ(N))" sets it to be the zone layouts from Normal Mode of Sonic Jam, but tweaked.
+;   | "REV02(SJ(O))" sets it to be the zone layouts from Original Mode of Sonic Jam, but tweaked.
+;   | "Dev's Choice" sets it to be my preferred zone layouts.
+;   | "Dev's Choice Full" sets it to be my preferred zone layouts with all zones.
 ;
 ZoneOrder = Final
 ;   | "Map" sets it to be the zone order from the map concept at https://tcrf.net/Prerelease:Sonic_the_Hedgehog_2_(Genesis)/Time_Travel_Story#Map_Concept_Art.
@@ -70,6 +92,8 @@ ZoneOrder = Final
 ;   | "Beta 7" sets it to be the zone order from the Beta 7 prototype, but tweaked.
 ;   | "Beta 8" sets it to be the zone order from the Beta 8 prototype, but tweaked.
 ;   | "Final" sets it to be the zone order from the final game, but tweaked.
+;   | "Dev's Choice" sets it to be my preferred zone order.
+;   | "Dev's Choice Full" sets it to be my preferred zone order with all zones.
 ;
 useFullWaterTables = 1
 ;	| If 1, zone offset tables for water levels cover all level slots instead of only slots 8-$F
@@ -4079,7 +4103,7 @@ Pal_SS1_2p:palette Special Stage 1 2p.bin ; Special Stage 1 2p palette
 Pal_SS2_2p:palette Special Stage 2 2p.bin ; Special Stage 2 2p palette
 Pal_SS3_2p:palette Special Stage 3 2p.bin ; Special Stage 3 2p palette
 Pal_Result:palette Special Stage Results Screen.bin ; Special Stage Results Screen palette
-Pal_Knux:  palette Knuckles.bin,SonicAndTails2.bin ; "Sonic and Miles" background palette (also usually the primary palette line)
+Pal_Knux:  palette Knuckles.bin,SonicAndTails2.bin ; "Knuckles" background palette (also usually the primary palette line)
 Pal_CPZ_K_U: palette CPZ Knux underwater.bin ; Chemical Plant Zone underwater palette
 Pal_ARZ_K_U: palette ARZ Knux underwater.bin ; Aquatic Ruin Zone underwater palette
 ; ===========================================================================
@@ -4291,8 +4315,8 @@ SegaScreen:
 
 	; load an extra sprite to hide the TM (trademark) symbol on the SEGA screen
 	lea	(SegaHideTM).w,a1
-	move.b	#ObjID_SegaHideTM,id(a1)	; load objB1 at $FFFFB080
-	move.b	#$4E,subtype(a1) ; <== ObjB1_SubObjData
+	;move.b	#ObjID_SegaHideTM,id(a1)	; load objB1 at $FFFFB080
+	;move.b	#$4E,subtype(a1) ; <== ObjB1_SubObjData
 ; loc_38CE:
 SegaScreen_Contin:
 	moveq	#PalID_SEGA,d0
@@ -4855,6 +4879,9 @@ MusicList: zoneOrderedTable 1,1
 	zoneTableEntry.b MusID_DEZ	; DEZ
 	zoneTableEntry.b MusID_ARZ	; ARZ
 	zoneTableEntry.b MusID_SCZ	; SCZ
+	zoneTableEntry.b MusID_EHZ	; Zone 11
+	zoneTableEntry.b MusID_EHZ	; Zone 12
+	zoneTableEntry.b MusID_EHZ	; Zone 13
     zoneTableEnd
 	even
 ;----------------------------------------------------------------------------
@@ -4879,6 +4906,9 @@ MusicList2: zoneOrderedTable 1,1
 	zoneTableEntry.b MusID_DEZ	; DEZ
 	zoneTableEntry.b MusID_ARZ	; ARZ
 	zoneTableEntry.b MusID_SCZ	; SCZ
+	zoneTableEntry.b MusID_EHZ	; Zone 11
+	zoneTableEntry.b MusID_EHZ	; Zone 12
+	zoneTableEntry.b MusID_EHZ	; Zone 13
     zoneTableEnd
 	even
 ; ===========================================================================
@@ -5334,7 +5364,7 @@ InitPlayers:
 ; ===========================================================================
 ; loc_44BE:
 InitPlayers_Alone: ; either Sonic or Tails but not both
-	
+	bne.s	InitPlayers_TailsAlone ; branch if this is a Tails alone game
 	move.b	#ObjID_Sonic,(MainCharacter+id).w ; load Obj01 Sonic object at $FFFFB000
 	move.b	#ObjID_SpindashDust,(Sonic_Dust+id).w ; load Obj08 Sonic's spindash dust/splash object at $FFFFD100
 	rts
@@ -5342,13 +5372,13 @@ InitPlayers_Alone: ; either Sonic or Tails but not both
 ; loc_44D0:
 InitPlayers_TailsAlone:
     subq.w	#1,d0
-	bne.s	InitPlayers_TailsAlone ; branch if this is a Tails alone game
+	bne.s	InitPlayers_KnucklesAlone ; branch if this is a Knuckles alone game
 	move.b	#ObjID_Tails,(MainCharacter+id).w ; load Obj02 Tails object at $FFFFB000
 	move.b	#ObjID_SpindashDust,(Tails_Dust+id).w ; load Obj08 Tails' spindash dust/splash object at $FFFFD100
 	addi_.w	#4,(MainCharacter+y_pos).w
 	rts
 InitPlayers_KnucklesAlone:
-	move.b	#ObjID_Knuckles,(MainCharacter+id).w ; load ObjXX Knuckles object at $FFFFB000
+	move.b	#ObjID_Knuckles,(MainCharacter+id).w ; load Obj62 Knuckles object at $FFFFB000
 	move.b	#ObjID_SpindashDust,(Sonic_Dust+id).w ; load Obj08 Knuckles' spindash dust/splash object at $FFFFD100
 	rts
 ; End of function InitPlayers
@@ -5466,6 +5496,9 @@ WaterHeight: zoneOrderedTable 2,2
 	zoneTableEntry.w  $600, $600	; DEZ
 	zoneTableEntry.w  $410, $510	; ARZ
 	zoneTableEntry.w  $600, $600	; SCZ
+	zoneTableEntry.w  $600, $600	; Zone 11
+	zoneTableEntry.w  $600, $600	; Zone 12
+	zoneTableEntry.w  $600, $600	; Zone 13
     zoneTableEnd
     else
 ; word_4584:
@@ -5559,6 +5592,15 @@ Dynamic_water_routine_table: zoneOrderedOffsetTable 2,2
 	zoneOffsetTableEntry.w DynamicWaterNull ; Act 1
 	zoneOffsetTableEntry.w DynamicWaterNull ; Act 2
 	; SCZ
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 1
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 2
+	; Zone 11
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 1
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 2
+	; Zone 12
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 1
+	zoneOffsetTableEntry.w DynamicWaterNull ; Act 2
+	; Zone 13
 	zoneOffsetTableEntry.w DynamicWaterNull ; Act 1
 	zoneOffsetTableEntry.w DynamicWaterNull ; Act 2
     zoneTableEnd
@@ -12033,6 +12075,7 @@ LevelSelect2P_LevelOrder:
 	dc.w	emerald_hill_zone_act_1
 	dc.w	mystic_cave_zone_act_1
 	dc.w	casino_night_zone_act_1
+	dc.w    hill_top_zone_act_1
 	dc.w	$FFFF
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -12537,14 +12580,30 @@ boxData macro txtlabel,vramAddr
 	boxData	TextOptScr_SoundTest,VRAM_Plane_A_Name_Table+planeLoc(64,9,19)
 
 off_92D2:
+    dc.l TextOptScr_SonicAndSonic
 	dc.l TextOptScr_SonicAndMiles
+	dc.l TextOptScr_SonicAndKnuckles
 	dc.l TextOptScr_SonicAlone
+    dc.l TextOptScr_MilesAndSonic
+	dc.l TextOptScr_MilesAndMiles
+	dc.l TextOptScr_MilesAndKnuckles
 	dc.l TextOptScr_MilesAlone
+    dc.l TextOptScr_KnucklesAndSonic
+	dc.l TextOptScr_KnucklesAndMiles
+	dc.l TextOptScr_KnucklesAndKnuckles
 	dc.l TextOptScr_KnucklesAlone
 off_92DE:
+    dc.l TextOptScr_SonicAndSonic
 	dc.l TextOptScr_SonicAndTails
+	dc.l TextOptScr_SonicAndKnuckles
 	dc.l TextOptScr_SonicAlone
+    dc.l TextOptScr_TailsAndSonic
+	dc.l TextOptScr_TailsAndTails
+	dc.l TextOptScr_TailsAndKnuckles
 	dc.l TextOptScr_TailsAlone
+    dc.l TextOptScr_KnucklesAndSonic
+	dc.l TextOptScr_KnucklesAndTails
+	dc.l TextOptScr_KnucklesAndKnuckles
 	dc.l TextOptScr_KnucklesAlone
 off_92EA:
 	dc.l TextOptScr_AllKindsItems
@@ -13117,17 +13176,31 @@ super_sonic_cheat:
 
 	; options screen menu text
 
-TextOptScr_PlayerSelect:	menutxt	"* PLAYER SELECT *"	; byte_97CA:
-TextOptScr_SonicAndMiles:	menutxt	"SONIC AND MILES"	; byte_97DC:
-TextOptScr_SonicAndTails:	menutxt	"SONIC AND TAILS"	; byte_97EC:
-TextOptScr_SonicAlone:		menutxt	"SONIC ALONE    "	; byte_97FC:
-TextOptScr_MilesAlone:		menutxt	"MILES ALONE    "	; byte_980C:
-TextOptScr_TailsAlone:		menutxt	"TAILS ALONE    "	; byte_981C:
-TextOptScr_KnucklesAlone:   menutxt "KNUCKLES ALONE "
-TextOptScr_VsModeItems:		menutxt	"* VS MODE ITEMS *"	; byte_982C:
-TextOptScr_AllKindsItems:	menutxt	"ALL KINDS ITEMS"	; byte_983E:
-TextOptScr_TeleportOnly:	menutxt	"TELEPORT ONLY  "	; byte_984E:
-TextOptScr_SoundTest:		menutxt	"*  SOUND TEST   *"	; byte_985E:
+TextOptScr_PlayerSelect:       menutxt "* PLAYER SELECT *"	; byte_97CA:
+TextOptScr_SonicAndSonic:      menutxt "SONIC AND SONIC"
+TextOptScr_SonicAndMiles:      menutxt "SONIC AND MILES"	; byte_97DC:
+TextOptScr_SonicAndTails:      menutxt "SONIC AND TAILS"	; byte_97EC:
+TextOptScr_SonicAndKnuckles:   menutxt "SONIC AND KNUCKLES"
+TextOptScr_SonicAlone:         menutxt "SONIC ALONE    "	; byte_97FC:
+TextOptScr_MilesAlone:         menutxt "MILES ALONE    "	; byte_980C:
+TextOptScr_TailsAlone:         menutxt "TAILS ALONE    "	; byte_981C:
+TextOptScr_MilesAndSonic:      menutxt "MILES AND SONIC"
+TextOptScr_TailsAndSonic:      menutxt "TAILS AND SONIC"
+TextOptScr_MilesAndMiles:      menutxt "MILES AND MILES"
+TextOptScr_TailsAndMiles:      menutxt "TAILS AND MILES"
+TextOptScr_MilesAndTails:      menutxt "MILES AND TAILS"
+TextOptScr_TailsAndTails:      menutxt "TAILS AND TAILS"
+TextOptScr_MilesAndKnuckles:   menutxt "MILES AND KNUCKLES"
+TextOptScr_TailsAndKnuckles:   menutxt "TAILS AND KNUCKLES"
+TextOptScr_KnucklesAlone:      menutxt "KNUCKLES ALONE "
+TextOptScr_KnucklesAndSonic:   menutxt "KNUCKLES AND SONIC"
+TextOptScr_KnucklesAndMiles:   menutxt "KNUCKLES AND MILES"
+TextOptScr_KnucklesAndTails:   menutxt "KNUCKLES AND TAILS"
+TextOptScr_KnucklesAndKnuckles:menutxt "KNUCKLES AND KNUCKLES"
+TextOptScr_VsModeItems:        menutxt "* VS MODE ITEMS *"	; byte_982C:
+TextOptScr_AllKindsItems:      menutxt "ALL KINDS ITEMS"	; byte_983E:
+TextOptScr_TeleportOnly:       menutxt "TELEPORT ONLY  "	; byte_984E:
+TextOptScr_SoundTest:          menutxt "*  SOUND TEST   *"	; byte_985E:
 TextOptScr_0:			menutxt	"      00       "	; byte_9870:
 
 	charset ; reset character set
